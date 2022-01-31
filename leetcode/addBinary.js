@@ -1,29 +1,43 @@
 var addBinary = function(a, b) {
+    let sum = []
     let carry = 0;
-    // create an array that is the largest of a and b and fill with zero
-    let aLen = a.length;
-    let bLen = b.length;
-    let max = Math.max(aLen, bLen)
-    let result = Array(max).fill(0);
-
-    let i = 0;
-
-    while (i < max) {
-     let sum = (aLen - 1 - i < 0 ? 0 : a[aLen - 1 - i] * 1) + (bLen - 1-i < 0 ? 0 : b[bLen - 1- i] * 1) + carry
-    
-    
-    result[max - 1 - i] = sum % 2
-    carry = Math.floor(sum / 2)
-
-    i++
-    console.log( result)
+    let min = Math.min(a.length, b.length);
+    a = a.split('');
+    b = b.split('');
+    let remainder = [];
+ 
+    for (let i = 0; i < min; i++) {
+      let aNum = +a.pop();
+      let bNum = +b.pop();
+ 
+      if (aNum + bNum + carry === 0) {
+        sum.unshift(0);
+      }
+      else if (aNum + bNum + carry === 1) {
+        sum.unshift(1);
+        carry = 0;
+      }
+      else if (aNum + bNum + carry >= 2) {
+        sum.unshift((aNum + bNum + carry) % 2);
+        carry = Math.floor((aNum + bNum + carry)/2);
+      }
     }
-
-    if (carry > 0) {
-     result.unshift(1)
+      if (a.length > 0) remainder = a.slice();
+      else if (b.length > 0) remainder = b.slice();
+      
+ 
+       while (remainder.length > 0) {
+         let num = +remainder.pop();
+         if (num + carry === 0 || num + carry === 1) {
+           sum.unshift(num + carry);
+           carry = 0;
+         } else {
+           sum.unshift((num + carry) % 2);
+           carry = Math.floor((num + carry)/2);
+         }
+       }
+     
+ 
+      if (carry > 0) sum.unshift(1)
+      return sum.join('')
     }
-
-    return result.join('')
-};
-
-console.log(addBinary('1101','11100'))
