@@ -1,0 +1,1 @@
+Per the Project Euler website, only the first one hundred problems are eligible for discussion, and even then cannot be shared as just answers. As a result, I'm not putting all of my PE solutions in this public folder, but the ones I do am attempting to make sure the code is readable and commented for clarity to assist in understanding the problems. 
