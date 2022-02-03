@@ -9,7 +9,7 @@
 // An odd number multiplied an odd number of times will always be odd. 
 // Adding 1 to an odd number will always make it even
 // Dividing any even number by 2 will either yield another even number or an odd number. When 1 is repeatedly added to an odd number and then divided again, eventually the result will be 2 since 2 is a divisor of every even number. 
-// Another way to look at it is when multiplying by 3, it's the same thing as multiplying its even by 3 and then adding 4. Instead of 3n + 1 you can say 3(n - 1) * 4 + 4. For example: 7 : (6 * 3) + 4
+// Another way to look at it is when multiplying by 3, it's the same thing as multiplying its even by 3 and then adding 4. Instead of 3n + 1 you can say 3(n - 1)+ 4. For example: 7 : (6 * 3) + 4
 // 10 : 5, 16, 8, 4, 2, 1
 // 9 : 28, 14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1
 // 8 : 4, 2, 1
