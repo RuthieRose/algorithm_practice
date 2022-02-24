@@ -1,8 +1,8 @@
 
 const getMedian = (arr1, arr2) => {
 
- let n = arr2.length;
  let m = arr1.length;
+ let n = arr2.length;
 
  // edge cases
 
@@ -30,12 +30,52 @@ const getMedian = (arr1, arr2) => {
    return ((arr1[m/2] + arr1[m/2 -1])/2).toFixed(5)
   }
  } 
+ 
+ let largeArrLength = Math.max(arr1.length, arr2.length); 
 
- // Locate the median of arr2. Merge arr2 median into arr1. 
+ let largeArr;
+ let smallArr;
+ let isEven;
 
- let medianN = arr2[Math.floor(n/2)]
+ if (m === largeArrLength) {
+   largeArr = arr1;
+   smallArr = arr2;
+ } else {
+   largeArr = arr2;
+   smallArr = arr1;
+ }
+
+ if ((m+n) % 2 === 0) {
+   isEven = true;
+ }
+ 
+ let medianIndex = Math.floor((m+n)/2)
+ 
+ let mergedArr = [];
+
+
+ while (mergedArr.length < medianIndex + 1) {
+  if (smallArr.length === 0) {
+   mergedArr.push(largeArr.shift());
+  } else if (largeArr.length === 0) {
+   mergedArr.push(smallArr.shift());
+  } else if (largeArr[0] < smallArr[0]) {
+   mergedArr.push(largeArr.shift());
+  } else {
+   mergedArr.push(smallArr.shift());
+  }
+ }
+
+ console.log(mergedArr, medianIndex)
+ if (isEven) {
+  return ((mergedArr[medianIndex - 1] + mergedArr[medianIndex])/2).toFixed(5)
+ } else {
+  return (mergedArr[medianIndex]).toFixed(5)
+ } 
 
 }
 
 
-console.log(getMedian([], [2,4,5,7,8,9,10]))
+console.log(getMedian([0,0], [0,0]))
+console.log(getMedian([1,3], [2]))
+console.log(getMedian([1,2], [3,4]))
