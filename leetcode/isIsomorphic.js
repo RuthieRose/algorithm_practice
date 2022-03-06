@@ -42,8 +42,11 @@ const testIsIsomorphic = () => {
   
   testCases.forEach(item => {
    let args = item.tests;
+   let didItPass = isIsomorphic(...args) === item.expected;
+
+   if (didItPass) console.log('Passed')
+   else console.log('Failed')
    console.log(
-    isIsomorphic(...args) === item.expected, 
     `${args} expected to be ${item.expected}`
    )
   })
