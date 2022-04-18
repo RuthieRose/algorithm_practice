@@ -1,0 +1,18 @@
+// https://leetcode.com/problems/find-greatest-common-divisor-of-array/
+
+// Euclid's algorithm! 
+
+var findGCD = function(nums) {
+    
+    let smol = Math.min(...nums);
+    let notSmol = Math.max(...nums);
+    
+    function gcd(biggerNum, smallerNum) {
+         let remainder = biggerNum % smallerNum;
+         if (remainder != 0) return gcd(smallerNum, remainder);
+         else return smallerNum;
+    }
+   
+    return gcd(notSmol, smol);
+    
+};
