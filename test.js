@@ -19,6 +19,22 @@ var confusingNumber = function(n) {
   
  };
 
+ var specialArray = function(nums) {
+    
+  let unique = -1;
+  
+  for (let i = 0; i <= nums.length; i++) {
+      let filter = nums.filter(num => {
+          return num >= i
+      })
+      if (filter.length === i) {
+          unique = i;
+      }
+  }
+  
+  return unique;
+ };
+
 describe('Confusing Number', function () {
  describe('result', function () {
   it('should return true when the number is valid and false if it is not', function () {
@@ -27,4 +43,14 @@ describe('Confusing Number', function () {
     assert.equal(confusingNumber(68),true);
   })
  })
+})
+
+describe('Special Array with X Elements Greater Than or Equal to X', function () {
+  describe('result', function () {
+    it ('should return the unique number if there are x elements greater than or equal to x and -1 if there are not any', function () {
+      assert.equal(specialArray([3,5]), 2);
+      assert.equal(specialArray([0,0]), -1);
+      assert.equal(specialArray([0,4,3,0,4]), 3);
+    })
+  })
 })
