@@ -35,6 +35,14 @@ var confusingNumber = function(n) {
   return unique;
  };
 
+ var sortArrayByParity = function(nums) {
+  let sorted = [];
+  
+  nums.filter(num => num % 2 === 0 ? sorted.unshift(num) : sorted.push(num))
+  
+  return sorted;
+};
+
 describe('Confusing Number', function () {
  describe('result', function () {
   it('should return true when the number is valid and false if it is not', function () {
@@ -51,6 +59,14 @@ describe('Special Array with X Elements Greater Than or Equal to X', function ()
       assert.equal(specialArray([3,5]), 2);
       assert.equal(specialArray([0,0]), -1);
       assert.equal(specialArray([0,4,3,0,4]), 3);
+    })
+  })
+})
+
+describe('Sort Array by Parity', function () {
+  describe('result', function() {
+    it ('return an array with even numbers at the front and odd numbers at the back of the array', function () {
+      assert.deepEqual(sortArrayByParity([1,2,3,4]), [4,2,1,3])
     })
   })
 })
