@@ -43,6 +43,26 @@ var confusingNumber = function(n) {
   return sorted;
 };
 
+var checkStringAllAs = function(s) {
+  let sArray = s.split('');
+  if (!sArray.includes('a')) return true;
+  if (!sArray.includes('b')) return true;
+  
+  if (sArray.lastIndexOf('a') > sArray.indexOf('b')) return false;
+  return true;
+ };
+
+describe('Check if all As appear before All Bs', function () {
+  describe('result', function () {
+    it ('should return true when all As appear before all Bs', function () {
+      assert.equal(checkStringAllAs("aaabbb"), true);
+      assert.equal(checkStringAllAs("abab"), false);
+      assert.equal(checkStringAllAs("bbb"), true);
+      assert.equal(checkStringAllAs("aaa"), true);
+    })
+  })
+})
+
 describe('Confusing Number', function () {
  describe('result', function () {
   it('should return true when the number is valid and false if it is not', function () {
