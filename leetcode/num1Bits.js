@@ -1,4 +1,4 @@
-
+// https://leetcode.com/problems/number-of-1-bits/
 
 var hammingWeight = function(n) {
     let nBit = n.split('');
@@ -12,4 +12,8 @@ var hammingWeight = function(n) {
     }
 
     return count;
+};
+
+var hammingWeight = function(n) {
+  return n.toString(2).split('').reduce((a,b) => +a + +b)
 };
