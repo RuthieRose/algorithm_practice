@@ -16,3 +16,14 @@ var missingNumber = function(nums) {
  if (nums[0] === 0) return nums[nums.length -1] + 1;
  else return 0;
 };
+
+var missingNumber = function(nums) {
+    nums = nums.sort((a,b) => a - b)
+    let n = nums.length;
+    let newNums = []
+    for (let i = 0; i <= n; i++) {
+        newNums.push(i)
+        if (newNums[i] !== nums[i]) return newNums[i]
+    }
+
+};
