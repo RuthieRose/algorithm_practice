@@ -49,3 +49,41 @@ while (headA !== headB) {
 return headA;
 
 };
+
+// Using Map
+
+var getIntersectionNode = function(headA, headB) {
+    
+    let nodes = new Map()
+    let count = 0
+    
+    while (headA) {
+        
+        if (nodes.get(headA)) {
+            nodes.set(headA, count)
+            count++
+        }
+        else (nodes.set(headA, 'a'))
+         
+        headA = headA.next
+
+    }
+    
+    while (headB) {
+        
+        if (nodes.get(headB)) {
+            nodes.set(headB, count)
+            count++
+        }
+        else (nodes.set(headB, 'b'))
+        
+        headB = headB.next
+    }
+    
+    for (let key of nodes) {
+        if (key[1] === 0) return key[0]
+    }
+    
+    return null
+    
+};
