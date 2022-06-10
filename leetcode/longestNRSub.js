@@ -27,3 +27,27 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 console.log(lengthOfLongestSubstring("aabaab!bb"))
+
+// the remix
+
+var lengthOfLongestSubstring = function(s) {
+    
+   if (s.length === 0) return 0
+   
+   let workingSub = [s[0]]
+   let longest = 1
+   
+   for (let i = 1; i < s.length; i++) {
+       
+       let char = s[i]
+
+       if (workingSub.includes(char)) {
+           while (workingSub.includes(char)) workingSub.shift()
+       }
+       
+       workingSub.push(char)
+       longest = Math.max(workingSub.length, longest)
+   }
+   
+   return longest
+};
