@@ -51,3 +51,32 @@ var lengthOfLongestSubstring = function(s) {
    
    return longest
 };
+
+// using set
+
+var lengthOfLongestSubstring = function(s) {
+    
+   if (s.length === 0) return 0
+   
+   let frequency = new Set()
+   let workingSub = []
+   let longest = 1
+   
+   for (let i = 0; i < s.length; i++) {
+       
+       let char = s[i]
+       
+       if (frequency.has(char)) {
+           while (frequency.has(char)) {
+           let removeChar = workingSub.shift()
+           frequency.delete(removeChar)
+           }
+       }
+       
+       workingSub.push(char)
+       frequency.add(char)
+       longest = Math.max(workingSub.length, longest)
+   }
+   
+   return longest
+};
