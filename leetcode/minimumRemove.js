@@ -42,3 +42,49 @@
   return s.join('')
 
 };
+
+// second go-round
+
+var minRemoveToMakeValid = function(s) {
+    
+    let stack = []
+    let returnString = ''
+    let openCount = 0
+    let closeCount = 0
+    let correctCount;
+    
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i]
+        if (char === '(') {
+            openCount++
+            stack.push(')')
+        }
+        
+        else if (char === ')' && stack.length) {
+            closeCount++
+            stack.pop(")")
+        }
+    }
+    
+
+    correctCount = Math.min(openCount, closeCount)
+    stack = []
+    
+    
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i]
+        if (char === '(' && correctCount > 0) {
+            correctCount--
+            returnString += char
+            stack.push(')')
+        }
+        else if (char === ')' && stack.length > 0) {
+            returnString += char
+            stack.pop()
+        }
+        else if (char !== '(' && char !== ')') returnString += char
+    }
+    
+    return returnString
+    
+};
