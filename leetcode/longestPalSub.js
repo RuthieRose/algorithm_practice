@@ -2,38 +2,48 @@
 
 var longestPalindrome = function(s) {
 
- if (s.length === 0 || s.length === 1) return s;
- 
- let longestPal = '';
- let workingPalindrome = '';
-
- function testPalindrome(str) {
-   let len = Math.floor(str.length/2)
-   for (let i = 0; i < len; i++) {
-    // console.log(str[i], str[str.length - 1 -i])
-    if (str[i] !== str[str.length - 1 -i]) {
-     return false
-    }
-   }
-   return true;
- }
-
- for (let i = 0; i < s.length; i++) {
-  for (let j = s.length; j > i; j--) {
-    let str = s.slice(i,j);
-    if (testPalindrome(str)) {
-     workingPalindrome = str;
-     if (workingPalindrome.length > longestPal.length) {
-      longestPal = workingPalindrome;
-     }
-     break;
-    }
+  if (s.length === 1) return s
+  let matrix = []
+  let longestPal = ''
+  let maxString = 0
+  let maxJ
+  
+  let reverse = s.split('').reverse().join('')
+  
+  for (let i = 0; i < reverse.length; i++) {
+      let row = []
+      let char = reverse[i]
+      for (let j = 0; j < s.length; j++) {
+          let sChar = s[j]
+          
+          if (char !== sChar) {
+              row.push(0)
+          }
+          else {
+              let num
+              if (i > 0 && j > 0) num = matrix[i-1][j-1]
+              else num = 0
+              num++
+              row.push(num)
+              maxString = Math.max(maxString, num)
+              if (maxString === num) {
+                  maxJ = j
+              }
+          }
+      }
+      matrix.push(row)
   }
- }
-   return longestPal; 
+  console.log(matrix)
+  for (let i = maxString; i > 0; i--) {
+      longestPal += s[maxJ]
+      maxJ--
+  }
+  
+  return longestPal
 };
 
 console.log(longestPalindrome('bab'))
 console.log(longestPalindrome('babad'))
 console.log(longestPalindrome('cbbd'))
 console.log(longestPalindrome('aparadar'))
+console.log(longestPalindrome("aacabdkacaa"))
