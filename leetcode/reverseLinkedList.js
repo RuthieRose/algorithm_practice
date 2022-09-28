@@ -1,15 +1,11 @@
+// https://leetcode.com/problems/reverse-linked-list/
+
 var reverseList = function(head) {
-
- let curr = head
- let next 
- let prev = null
-
-while (curr) {
-   next = curr.next    
-   curr.next = prev
-   prev = curr
-   curr = next 
- }
-
- return prev
+    
+  if (!head || !head.next) return head
+  
+  let current = reverseList(head.next)
+  head.next.next = head
+  head.next = null
+  return current;
 };
